@@ -25,6 +25,7 @@ export default function ContactList() {
   }
 
   const showEdit = (id) => {
+    window.scrollTo(0, 0)
     setPositionEdit(getIndexRemove(id));
     setIsCreate(false);
   }
@@ -55,11 +56,13 @@ export default function ContactList() {
       />
       {
         cards.length > 0 ?
-          <div>
-            <h1> Lista de contatos </h1>
-            {cards}
+          <div className="mt-4">
+            <h1 className="bold"> Lista de contatos </h1>
+            <div className="mt-2">
+              {cards}
+            </div>
           </div>
-          : <h1>Não há contatos</h1>
+          : <h1 className="mt-2">Não há contatos</h1>
       }
     </div>
   )

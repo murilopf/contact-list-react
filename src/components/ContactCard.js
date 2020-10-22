@@ -8,8 +8,11 @@ export default function ContactCard({ data, deleteContact, editContact }) {
       <span className="block text-base text-gray-500">{email}</span>
       <span className="block text-base text-gray-500">{empresa}</span>
       <span className="block text-base text-gray-500">{cargo}</span>
-      <label className="block text-2xl font-semibold" onClick={() => deleteContact(id)}>Excluir</label>
-      <label className="block text-2xl font-semibold" onClick={() => editContact(id)}>Editar</label>
+      <div class="mt-3 bg-gray-200">
+        <label className="inline bg-yellow-600 hover:bg-yellow-700 text-white py-1 px-4 rounded" onClick={() => editContact(id)}>Editar</label>
+        <label className="inline bg-red-700 hover:bg-red-800 text-white py-1 px-4 rounded ml-3" onClick={() => deleteContact(id)}>Excluir</label>
+      </div>
     </div>
   )
 }
+

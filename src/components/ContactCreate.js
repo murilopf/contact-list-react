@@ -6,7 +6,7 @@ export default function ContactForm({ save, isCreate, saveEditedContact, list })
   const [data, setData] = useState(initialState)
 
   useEffect(() => {
-    if (list)
+    if (list && !isCreate)
       setData({ id: list.id, name: list.name, email: list.email, empresa: list.empresa, cargo: list.cargo })
   }, [isCreate])
 
@@ -37,7 +37,6 @@ export default function ContactForm({ save, isCreate, saveEditedContact, list })
       }
     }
 
-    setData({ name: '', email: '', empresa: '', cargo: '' })
     return true
   }
 
@@ -53,18 +52,20 @@ export default function ContactForm({ save, isCreate, saveEditedContact, list })
         save({ ...data })
       else
         save({ ...data, id: getId() })
+
+      setData({ name: '', email: '', empresa: '', cargo: '' })
     }
   }
 
   return (
-    <div>
-      <h2> {
+    <div className={"p-4 border-b-2 border-gray-600"}>
+      <h1 className={"bold"}> {
         isCreate ?
           "Adicionar novo contato"
           : "Editar contado"
-      }</h2>
+      }</h1>
 
-      <form onSubmit={handleSubmit} className="p-2 flex flex-col">
+      <form onSubmit={handleSubmit} className="mt-3 p-2 flex flex-col">
         <div className="flex flex-row items-stretch mb-2 justify-between">
           <label className="text-lg">Nome*</label>
           <input type="text" className="p-2 rounded text-gray-600 text-lg"
@@ -90,7 +91,7 @@ export default function ContactForm({ save, isCreate, saveEditedContact, list })
         </div>
 
         <div>
-          <button type="submit">
+          <button className="mt-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" type="submit">
             {
               isCreate ?
                 "Criar contato"
